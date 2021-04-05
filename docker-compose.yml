@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  nginx:
+    build:
+      context: docker/nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/app
+    depends_on:
+      - php-fpm
+
+  php-fpm:
+    build:
+      context: docker
+      dockerfile: php-fpm/Dockerfile
+    volumes:
+      - ./:/app
